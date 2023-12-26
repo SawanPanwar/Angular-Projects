@@ -29,16 +29,12 @@ export class SignupComponent implements OnInit {
       self.form.message = '';
       self.inputerror = {};
 
-
-      if (self.dataValidator.isNotNullObject(res.result.inputerror)){
+      if (self.dataValidator.isNotNullObject(res.result.inputerror)) {
         self.inputerror = res.result.inputerror;
       }
-      if (self.dataValidator.isNotNullObject(res.result.message)){
+      if (self.dataValidator.isNotNullObject(res.result.message)) {
         self.form.message = res.result.message;
       }
-
     });
-
   }
-
 }

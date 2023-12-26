@@ -33,7 +33,7 @@
     </tr>
     <tr *ngFor="let m of form.list; let i = index">
       <td style="text-align: center;">
-        <input type="checkbox" name="ids" value="{{m.id}}" />
+        <input type="checkbox" #checkboxes name="list_name" id="{{m.id}}" value="{{isMasterSel}}" />
       </td>
       <td style="text-align: center;">{{(form.pageNo*5)+i+ 1}}</td>
       <td>
@@ -70,7 +70,7 @@
     <tr>
       <td style="width: 25%"><button [disabled]="form.pageNo == 0" (click)="previous()">previous</button></td>
       <td align="center" style="width: 25%"><button (click)="add()">add</button></td>
-      <td align="center" style="width: 25%"><input type="submit" name="operation" value="delete"></td>
+      <td align="center" style="width: 25%"><button (click)="delete()" >delete</button></td>
       <td style="width: 25%" align="right"><button [disabled]="form.list.length < 5" (click)="next()">next</button></td>
     </tr>
   </table>

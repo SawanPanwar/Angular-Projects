@@ -34,24 +34,16 @@ export class UserComponent implements OnInit {
   }
 
   display() {
-
     var self = this;
-
     this.httpService.get('http://localhost:8080/User/get/' + self.form.data.id, function (res) {
-
       self.form.data = res.result.data;
-
     });
   }
 
   preload() {
-
     var self = this;
-
     this.httpService.get('http://localhost:8080/User/preload', function (res) {
-
       self.form.preload = res.result;
-
     });
   }
 
@@ -76,23 +68,16 @@ export class UserComponent implements OnInit {
     var self = this;
 
     this.httpService.post('http://localhost:8080/User/save', this.form.data, function (res) {
-
       self.form.message = '';
       self.inputerror = {};
-
       if (self.dataValidator.isNotNullObject(res.result.inputerror)) {
         self.inputerror = res.result.inputerror;
       }
-
       self.form.data.id = res.result.data;
       self.myFile();
-
       if (self.dataValidator.isNotNullObject(res.result.message)) {
         self.form.message = res.result.message;
       }
     });
-
   }
-
-
 }

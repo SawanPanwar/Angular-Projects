@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpServiceService } from '../http-service.service';
 import { DataValidator } from '../utility/data-validator';
@@ -9,7 +9,9 @@ import { DataValidator } from '../utility/data-validator';
 })
 export class UserListComponent implements OnInit {
 
-
+  @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
+  deleteRecordList: any = [];
+  isMasterSel: boolean = false;
 
   form = {
     pageNo: 0,
@@ -26,6 +28,20 @@ export class UserListComponent implements OnInit {
     this.search();
   }
 
+  preload() {
+    var self = this;
+    this.httpService.get('http://localhost:8080/User/preload', function (res) {
+      self.form.preload = res.result;
+    });
+  }
+
+  search() {
+    var self = this;
+    this.httpService.post('http://localhost:8080/User/search/' + self.form.pageNo, self.form.searchParams, function (res) {
+      self.form.list = res.result.data;
+    });
+  }
+
   next() {
     this.form.pageNo++;
     this.search();
@@ -40,25 +56,20 @@ export class UserListComponent implements OnInit {
     this.router.navigateByUrl('/user');
   }
 
-  edit(page) {
-    this.router.navigateByUrl(page);
-  }
-
-  preload() {
-
+  delete() {
     var self = this;
-
-    this.httpService.get('http://localhost:8080/User/preload', function (res) {
-      self.form.preload = res.result;
+    this.deleteRecordList.length = 0;
+    this.checkboxes.forEach((element) => {
+      if (element.nativeElement.checked) {
+        this.deleteRecordList.push(element.nativeElement.id);
+      }
     });
-  }
-
-  search() {
-    var self = this;
-
-    this.httpService.post('http://localhost:8080/User/search/' + self.form.pageNo, self.form.searchParams, function (res) {
+    this.httpService.post('http://localhost:8080/User/deleteMany/' + this.deleteRecordList + '?pageNo=' + self.form.pageNo, self.form.searchParams, function (res) {
       self.form.list = res.result.data;
     });
   }
 
+  edit(page) {
+    this.router.navigateByUrl(page);
+  }
 }
