@@ -1,0 +1,50 @@
+<style>
+    .error {
+        color: red;
+        font-weight: bold;
+    }
+
+    .success {
+        color: green;
+        font-weight: bold;
+    }
+
+    input,
+    select {
+        width: 250px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+    }
+</style>
+<div align="center">
+    <h2 style="color: navy">User Registration</h2>
+    <table>
+        <tr>
+            <th>first Name :</th>
+            <td><input type="text" name="firstName" [(ngModel)]="form.firstName" /> </td>
+        </tr>
+        <tr>
+            <th>Last Name :</th>
+            <td><input type="text" name="lastName" [(ngModel)]="form.lastName" /> </td>
+        </tr>
+        <tr>
+            <th>Login ID :</th>
+            <td><input type="text" name="loginId" [(ngModel)]="form.loginId" /> </td>
+        </tr>
+        <tr>
+            <th>Password :</th>
+            <td><input type="text" name="password" [(ngModel)]="form.password" /> </td>
+        </tr>
+        <tr>
+            <th>DOB :</th>
+            <td><input type="date" name="dob" [(ngModel)]="form.dob" /> </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><button (click)="signUp()">signUp</button></td>
+        </tr>
+    </table>
+</div>
