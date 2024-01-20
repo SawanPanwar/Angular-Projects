@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<table>
+    <tr><input type="text" [(ngModel)]="form.searchParams.firstName" /> <button (click)="search()">search</button> </tr>
+</table>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>LoginId</th>
+        <th>Password</th>
+        <th>DOB</th>
+    </tr>
+    <tr *ngFor="let m of form.list">
+        <td>{{m.id}}</td>
+        <td> <img src="http://localhost:8080/User/profilePic/{{m.id}}" height="55px" width="80px"></td>
+        <td>{{m.firstName}}</td>
+        <td>{{m.lastName}}</td>
+        <td>{{m.loginId}}</td>
+        <td>{{m.password}}</td>
+        <td>{{m.dob}}</td>
+    </tr>
+</table>

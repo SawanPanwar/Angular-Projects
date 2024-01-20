@@ -24,4 +24,10 @@ export class SignupComponent {
       console.log('data => ', res);
     })
   }
+
+  getData() {
+    this.httpService.get('http://localhost:8080/User/get/3', function (res: any) {
+      console.log('get data => ', res);
+    })
+  }
 }

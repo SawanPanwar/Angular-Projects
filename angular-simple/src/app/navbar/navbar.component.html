@@ -1,1 +1,15 @@
-<p>navbar works!</p>
+<br>
+<ng-container *ngIf="isLogin(); else elseBlock">
+    <a href="/login">
+        <font color="black"><b>Hi, {{form.data.fname }} {{form.data.lname}}</b></font>
+    </a> |
+    <a href="/user"><b>Add User</b></a> |
+    <a href="/userlist"><b>User List</b></a>|
+    <a (click)="logout()">
+        <font color="blue"><b>Logout</b></font>
+      </a>
+</ng-container>
+<ng-template #elseBlock>
+    <b>Hi, Guest</b><br>
+</ng-template>
+<hr>

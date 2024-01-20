@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UserComponent } from './user/user.component';
 import { SignupComponent } from './login/signup.component';
 import { HttpServiceService } from './http-service.service';
+import { UserlistComponent } from './user/userlist.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpServiceService } from './http-service.service';
     NavbarComponent,
     FooterComponent,
     UserComponent,
-    SignupComponent
+    SignupComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
