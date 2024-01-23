@@ -11,6 +11,7 @@
         <th>LoginId</th>
         <th>Password</th>
         <th>DOB</th>
+        <th>Edit</th>
     </tr>
     <tr *ngFor="let m of form.list">
         <td>{{m.id}}</td>
@@ -20,5 +21,7 @@
         <td>{{m.loginId}}</td>
         <td>{{m.password}}</td>
         <td>{{m.dob}}</td>
+        <td> <a (click)="edit( '/user/' +  m.id)" style="color: blue;">edit
+        </a></td>
     </tr>
 </table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpServiceService } from '../http-service.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class UserlistComponent implements OnInit {
     searchParams :{}
   }
 
-  constructor(private httpService: HttpServiceService) {
+  constructor(private httpService: HttpServiceService, private router: Router) {
 
   }
 
@@ -23,15 +24,13 @@ export class UserlistComponent implements OnInit {
   }
 
   search() {
-
     var self = this;
-
     this.httpService.post('http://localhost:8080/User/search', this.form.searchParams, function (res: any) {
-
       self.form.list = res.result.data;
-
     })
-
   }
 
+  edit(page:any) {
+    this.router.navigateByUrl(page);
+  }
 }

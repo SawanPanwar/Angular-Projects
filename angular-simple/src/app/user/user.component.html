@@ -44,6 +44,11 @@
             <td><input type="date" name="dob" [(ngModel)]="form.dob" /> </td>
         </tr>
         <tr>
+            <th>Image :</th>
+            <td><input type="file" id="customFile" name="imageId" (change)="onFileSelect($event)"
+                    accept="image/*"> </td>
+        </tr>
+        <tr>
             <th></th>
             <td><button (click)="save()">save</button></td>
         </tr>
