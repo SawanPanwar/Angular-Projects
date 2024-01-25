@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { SignupComponent } from './login/signup.component';
 import { HttpServiceService } from './http-service.service';
 import { UserlistComponent } from './user/userlist.component';
+import { AuthServiceService } from './auth-service.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,9 @@ import { UserlistComponent } from './user/userlist.component';
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthServiceService, multi: true
+    },
     HttpServiceService
   ],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpServiceService } from '../http-service.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { HttpServiceService } from '../http-service.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   form = {
     loginId: '',
@@ -16,7 +16,13 @@ export class LoginComponent {
   }
   inputerror: any = {};
 
-  constructor(private router: Router, private httpService: HttpServiceService) {
+  constructor(private route: ActivatedRoute, private router: Router, private httpService: HttpServiceService) {
+  }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.form.message = params['errorMessage'] || null;
+      console.log('msssssssssgggggggggggg = >', this.form.message)
+    });
   }
 
   signIn() {
@@ -28,9 +34,10 @@ export class LoginComponent {
       if (res.result.message) {
         self.form.message = res.result.message;
       }
-      if(res.success){
+      if (res.success) {
         localStorage.setItem('fname', res.result.data.firstName);
         localStorage.setItem('lname', res.result.data.lastName);
+        localStorage.setItem('token', 'Bearer ' + res.result.token);
       }
     })
   }
