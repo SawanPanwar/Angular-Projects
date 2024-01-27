@@ -10,7 +10,8 @@ export class UserlistComponent implements OnInit {
 
   form: any = {
     list: [],
-    searchParams :{}
+    searchParams: {},
+    preload: []
   }
 
   constructor(private httpService: HttpServiceService, private router: Router) {
@@ -19,8 +20,16 @@ export class UserlistComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.preload();
     this.search();
 
+  }
+
+  preload() {
+    var self = this;
+    this.httpService.get('http://localhost:8080/User/preload', function (res:any) {
+      self.form.preload = res.result;
+    });
   }
 
   search() {
@@ -30,7 +39,7 @@ export class UserlistComponent implements OnInit {
     })
   }
 
-  edit(page:any) {
+  edit(page: any) {
     this.router.navigateByUrl(page);
   }
 }

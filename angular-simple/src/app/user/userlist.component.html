@@ -1,6 +1,14 @@
 <app-navbar></app-navbar>
 <table>
-    <tr><input type="text" [(ngModel)]="form.searchParams.firstName" /> <button (click)="search()">search</button> </tr>
+    <tr>
+        <td><input type="text" [(ngModel)]="form.searchParams.firstName" />
+        </td>
+        <td> <select name="id" [(ngModel)]="form.searchParams.id">
+                <option [ngValue]="" value="undefined">{{'------Select User-------' }}</option>
+                <option *ngFor="let obj of form.preload.userList" [value]="obj.key">{{obj.value}}</option>
+            </select></td>
+        <td><button (click)="search()">search</button></td>
+    </tr>
 </table>
 <table border="1">
     <tr>
@@ -22,6 +30,6 @@
         <td>{{m.password}}</td>
         <td>{{m.dob}}</td>
         <td> <a (click)="edit( '/user/' +  m.id)" style="color: blue;">edit
-        </a></td>
+            </a></td>
     </tr>
 </table>
