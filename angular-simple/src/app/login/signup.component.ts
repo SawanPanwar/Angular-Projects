@@ -20,7 +20,7 @@ export class SignupComponent {
   }
 
   signUp() {
-    this.httpService.post('http://localhost:8080/User/save', this.form, function (res: any) {
+    this.httpService.post('http://localhost:8080/Auth/signUp', this.form, function (res: any) {
       console.log('data => ', res);
     })
   }
