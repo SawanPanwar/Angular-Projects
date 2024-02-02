@@ -24,6 +24,14 @@
     <h2 style="color: navy">Add User</h2>
     <table>
         <tr>
+            <th>Role : </th>
+            <td><select name="id" [(ngModel)]="form.roleId">
+                    <option [ngValue]="" value="undefined">{{'------Select Role-------' }}</option>
+                    <option *ngFor="let obj of list.roleList" [value]="obj.key">{{obj.value}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <th>first Name :</th>
             <td><input type="text" name="firstName" [(ngModel)]="form.firstName" /> </td>
         </tr>

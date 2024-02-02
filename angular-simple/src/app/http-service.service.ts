@@ -7,11 +7,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HttpServiceService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    console.log('in HttpServiceService constructor')
+  }
 
   post(endpoint: any, bean: any, callback: any) {
     return this.httpClient.post(endpoint, bean).subscribe(data => {
       callback(data);
+    }, (data) => {
+      console.log('fail');
     });
   }
 
@@ -21,7 +25,7 @@ export class HttpServiceService {
     });
   }
 
-  getPathVariable(route: ActivatedRoute, callback:any) {
+  getPathVariable(route: ActivatedRoute, callback: any) {
     route.params.subscribe(params => {
       callback(params)
     });

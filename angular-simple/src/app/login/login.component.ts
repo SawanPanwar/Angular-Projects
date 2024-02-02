@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   inputerror: any = {};
 
   constructor(private route: ActivatedRoute, private router: Router, private httpService: HttpServiceService) {
+    console.log('in LoginComponent constructor')
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {

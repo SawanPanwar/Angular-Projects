@@ -18,7 +18,9 @@ export class UserComponent implements OnInit {
     loginId: '',
     password: '',
     dob: '',
+    roleId:null
   }
+  list: any = []
   fileToUpload: any = null;
 
   constructor(private httpService: HttpServiceService, private httpClient: HttpClient, private route: ActivatedRoute) {
@@ -29,9 +31,17 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.preload();
     if (this.form.id && this.form.id > 0) {
       this.display();
     }
+  }
+
+  preload() {
+    var self = this;
+    this.httpService.get('http://localhost:8080/User/preload', function (res: any) {
+      self.list = res.result;
+    });
   }
 
   display() {
