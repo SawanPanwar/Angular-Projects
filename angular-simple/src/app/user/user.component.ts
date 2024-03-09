@@ -76,4 +76,8 @@ export class UserComponent implements OnInit {
       self.myFile();
     });
   }
+
+  convertISODate(isoDate: string): string {
+    return isoDate.split('T')[0];
+  }
 }
